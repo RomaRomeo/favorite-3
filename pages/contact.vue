@@ -1,3 +1,3 @@
 <template>
-    contact
+    !!! contact
 </template>
