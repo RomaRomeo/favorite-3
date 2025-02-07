@@ -1,7 +1,7 @@
 <script setup lang="ts">
 const sizes = {
   "sm": "h-6 w-6",
-  "lg": "h-14 w-14",
+  "lg": "h-10 w-10 md:h-16 md:w-16",
 };
 
 const props = withDefaults(
@@ -47,8 +47,8 @@ const messengerButtons: MessengerButton[] = [
   >
     <!-- Adjust the following logic related to icon shadows -->
     <div
-        :class="[sizes[props.size], { 'w-24 h-24': props.size === 'lg' } ]" 
-        class="flex items-center justify-center  bg-gradient-to-r from-[#f2f8fa] to-[#f0fbff] rounded-full shadow-lg hover:shadow-xl transition duration-300"
+        :class="[sizes[props.size], { 'h-16 w-16 md:h-24 md:w-24': props.size === 'lg' } ]" 
+        class="flex items-center justify-center bg-gradient-to-r from-[#f2f8fa] to-[#f0fbff] rounded-full shadow-lg hover:shadow-xl transition duration-300"
     >
       <BaseIconSocialFacebook
         v-if="button.name === 'Facebook'"
@@ -68,7 +68,7 @@ const messengerButtons: MessengerButton[] = [
     </div>
     <span
         v-if="props.showLabels"
-      class="text-lg font-medium text-gray-700 group-hover:text-gray-900 transition duration-300"
+        class="text-md md:text-lg font-medium text-gray-700 group-hover:text-gray-900 transition duration-300"
     >
       {{ button.name }}
     </span>
