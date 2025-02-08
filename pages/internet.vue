@@ -1,3 +1,3 @@
 <template>
-    internet
+    <InternetPricingSection />
 </template>
