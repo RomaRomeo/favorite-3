@@ -10,6 +10,7 @@ const news = computed(() => (data.value ? formatNews(data.value.data) : []));
       :items="news"
       :loading="status === 'idle' || status === 'pending'"
       :error="error?.message"
+      list-class="grid gap-4"
       title="Оголошення"
     >
       <template #item="{ item }">

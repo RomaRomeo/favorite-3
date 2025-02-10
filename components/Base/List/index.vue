@@ -6,6 +6,7 @@ interface BaseListProps<T> {
   title?: string;
   seeAll?: string;
   loadMore?: boolean;
+  listClass?: string;
 }
 
 const props = defineProps<BaseListProps<any>>();
@@ -30,7 +31,7 @@ const emit = defineEmits(["loadMore"]);
       <BaseNotFound text="Сталася помилка сервера. Будь-ласка спробуйте пізніше" />
     </slot>
 
-    <div v-else class="grid gap-4">
+    <div v-else :class="props.listClass">
       <slot
         v-for="(item, index) in props.items"
         :key="index"
