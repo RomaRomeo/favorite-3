@@ -32,14 +32,17 @@ const emit = defineEmits(["loadMore"]);
     </slot>
 
     <div v-else :class="props.listClass">
-      <slot
-        v-for="(item, index) in props.items"
-        :key="index"
-        :item="item"
-        :index="index"
-        name="item"
-      />
       <slot v-if="props.loading" name="loading" />
+
+      <template v-else>
+        <slot
+          v-for="(item, index) in props.items"
+          :key="index"
+          :item="item"
+          :index="index"
+          name="item"
+        />
+      </template>
     </div>
 
     <button
