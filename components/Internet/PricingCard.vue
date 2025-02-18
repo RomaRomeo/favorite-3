@@ -13,7 +13,7 @@ defineProps<{
 
 <template>
   <div
-    class="w-full min-h-[520px] px-6 py-4 border border-sky-200 transition-shadow duration-300 hover:shadow-lg transition-colors duration-300 transform rounded-lg bg-gray-50 dark:bg-gray-800 flex flex-col"
+    class="w-full min-h-[420px] px-6 py-4 border border-sky-200 transition-shadow duration-300 hover:shadow-lg transition-colors duration-300 transform rounded-lg bg-gray-50 dark:bg-gray-800 flex flex-col"
   >
     <div
       v-if="isRecommended"
@@ -39,7 +39,7 @@ defineProps<{
       <p class="mt-4 text-gray-500 dark:text-gray-300">/в місяць</p>
     </div>
 
-    <div class="my-8 space-y-4">
+    <div class="my-8 space-y-4 flex flex-col ">
       <div
         v-for="feature in features"
         :key="feature"
