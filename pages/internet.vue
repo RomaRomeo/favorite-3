@@ -1,6 +1,8 @@
 <script setup lang="ts">
 import { formatInternetPlans } from "~/services/format/internet-plans";
+import { ModalInternetPlansSubmit } from "#components";
 
+const modal = useModal();
 const selectedCategory = ref("ходорів");
 const { data, error, status } = useFetch<{ data: IResponseInternetPlans[] }>(
   "/json/internet-plans.json",
@@ -16,6 +18,10 @@ const filteredPlans = computed(() =>
 const categories = computed(() => [
   ...new Set(plans.value.map((plan) => plan.category)),
 ]);
+
+function onSelectInternetPlanClick (planName: string, category: string) {
+  modal.open(ModalInternetPlansSubmit, { planName, category })
+}
 </script>
 
 <template>
@@ -37,7 +43,7 @@ const categories = computed(() => [
       list-class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4"
     >
       <template #item="{ item }">
-        <InternetPricingCard v-bind="item" />
+        <InternetPricingCard v-bind="item" @click="onSelectInternetPlanClick(item.name, item.category)" />
       </template>
       <template #loading>
         <InternetSkeletonPricingCard />
