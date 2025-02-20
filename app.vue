@@ -1,7 +1,7 @@
 <template>
   <div>
     <ModalClient />
-
+    <BaseToast />
     <NuxtLayout>
       <NuxtPage />
     </NuxtLayout>

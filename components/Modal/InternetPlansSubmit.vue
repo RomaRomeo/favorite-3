@@ -6,6 +6,7 @@ const props = defineProps<{
   category: string;
 }>();
 
+const toast = useToaster()
 const modal = useModal();
 const state = reactive({
   name: "",
@@ -22,30 +23,27 @@ const validate = (state: any): FormError[] => {
   return errors;
 };
 
-async function onSubmit() {
+function onSubmit() {
   loading.value = true;
 
-  const requestData = {
-    ...state,
-    planName: props.planName,
-    category: props.category,
-  };
-
-  const { data, error } = await useFetch("https://getform.io/f/bejrjqda", {
+  const { error } = useFetch("https://getform.io/f/bejrjqda1", {
     method: "POST",
-    body: JSON.stringify(requestData),
-    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({
+      ...state,
+      plan: props.planName,
+      category: props.category,
+    }),
+    headers: { "Accept": "application/json", "Content-Type": "application/json" },
   });
 
-  if (error.value) {
-    console.error("Error submitting form:", error.value);
-    loading.value = false;
-  } else {
-    loading.value = false;
-    console.log("Form submitted successfully", data.value);
-    modal.close();
-  }
+  if (!error.value) console.error("Error submitting form:", error.value);
+  
+  toast.success("labels.athlete_delete_success", "athlete.name" );
+
+  loading.value = false;
+  modal.close();
 }
+
 </script>
 
 <template>

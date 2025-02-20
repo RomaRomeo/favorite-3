@@ -84,6 +84,6 @@ const items = [
 
     <!-- <FormsNewsLetter v-if="false" class="my-8" /> -->
 
-    <BaseMessengers />
+    <BaseMessenger />
   </UContainer>
 </template>
