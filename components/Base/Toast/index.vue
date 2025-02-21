@@ -19,21 +19,27 @@ function addToast(toast: { type: "success" | "error"; message: string; title?: s
 const addErrorToast = (message: string, title?: string) => addToast({ type: "error", title, message });
 const addSuccessToast = (message: string, title?: string) => addToast({ type: "success", title, message });
 
+const colors = {
+  error: "bg-[#f3e1e5]",
+  success: "bg-[#b0e7ca]",
+} as const;
+
 provideToast({ error: addErrorToast, success: addSuccessToast });
 </script>
 
 <template>
-  <div v-if="alertMap.size !== 0" class="z-[99] w-full md:w-[560px] text-black toast toast-top toast-center">
+  <div v-if="alertMap.size !== 0" class="z-[99] w-full md:w-[560px] toast toast-top toast-center">
     <UAlert
       v-for="[key, alert] in alertMap"
       :key="key"
       :title="alert.title"
       :description="alert.message"
+      :class="colors[alert.type]"
       :color="alert.type"
       variant="subtle"
-      class="mx-auto animate-fade-in"
-      closable
-      @close="alertMap.delete(key)"
+      class="mx-auto animate-fade-in text-black"
+      close
+      @update:open="alertMap.delete(key)"
     />
   </div>
 </template>

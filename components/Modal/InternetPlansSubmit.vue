@@ -10,6 +10,7 @@ const toast = useToaster()
 const modal = useModal();
 const state = reactive({
   name: "",
+  settlement: "",
   email: "",
   phone: "",
   comment: "",
@@ -18,7 +19,7 @@ const loading = ref(false);
 
 const validate = (state: any): FormError[] => {
   const errors = [];
-  if (!state.name) errors.push({ name: "name", message: "Поле <Ваше ім’я> є обовʼязковим" });
+  if (!state.name) errors.push({ name: "name", message: "Поле <Ваше ім’я та прізвище> є обовʼязковим" });
   if (!state.phone) errors.push({ name: "phone", message: "Поле <Номер телефону> є обовʼязковим" });
   return errors;
 };
@@ -26,28 +27,35 @@ const validate = (state: any): FormError[] => {
 function onSubmit() {
   loading.value = true;
 
-  const { error } = useFetch("https://getform.io/f/bejrjqda1", {
+  useFetch("https://getform.io/f/ayvkkqqb1", {
     method: "POST",
-    body: JSON.stringify({
-      ...state,
-      plan: props.planName,
-      category: props.category,
-    }),
-    headers: { "Accept": "application/json", "Content-Type": "application/json" },
-  });
-
-  if (!error.value) console.error("Error submitting form:", error.value);
-  
-  toast.success("labels.athlete_delete_success", "athlete.name" );
-
-  loading.value = false;
-  modal.close();
+    body: JSON.stringify({ ...state, plan: props.planName, category: props.category }),
+    headers: { Accept: "application/json", "Content-Type": "application/json" },
+  })
+    .then((res) => {
+      if (res.data?.value) {
+        toast.success("Дякуємо! Ваша заявка успішно відправлена. Ми зв’яжемося з вами найближчим часом.", "Заявку успішно відправлено!");
+      } else {
+        toast.error("Сталася помилка під час відправки заявки. Будь ласка, спробуйте ще раз або зв’яжіться з нами.", "Помилка відправки!");
+      }
+    })
+    .catch(() => toast.error("Сталася помилка під час відправки заявки. Будь ласка, спробуйте ще раз або зв’яжіться з нами.", "Помилка відправки!"))
+    .finally(() => {
+      loading.value = false;
+      modal.close();
+    });
 }
+
+watch(
+  () => props.category,
+  (c) => state.settlement = c === 'ходорів' ? 'Ходорів' : '',
+  { immediate: true }
+);
 
 </script>
 
 <template>
-  <UModal>
+  <UModal >
     <template #header>
       <div class="flex items-center space-x-3">
         <div class="bg-primary/10 p-3 rounded-full text-primary flex items-center justify-center">
@@ -59,6 +67,12 @@ function onSubmit() {
             Заповніть форму, і ми зв’яжемося з вами найближчим часом.
           </p>
         </div>
+        <UButton
+          icon="line-md:menu-to-close-transition"
+          color="neutral"
+          variant="ghost"
+          @click="modal.close()"
+        />
       </div>
     </template>
 
@@ -77,10 +91,20 @@ function onSubmit() {
             <template #label>
               <div class="flex items-center gap-2">
                 <UIcon name="material-symbols:person-edit-outline-sharp" class="w-4 h-4 text-gray-500" />
-                <div>Ваше ім’я*</div>
+                <div>Ваше ім’я та прізвище*</div>
               </div>
             </template>
             <UInput v-model="state.name" variant="outline" size="xl" color="secondary" class="w-full" />
+          </UFormField>
+
+          <UFormField name="city" class="mb-4">
+            <template #label>
+              <div class="flex items-center gap-2">
+                <UIcon name="mdi:home-city" class="w-4 h-4 text-gray-500" />
+                <div>Назва населеного пункту*</div>
+              </div>
+            </template>
+            <SelectorSettlements v-model="state.settlement" :disabled="props.category === 'ходорів'" placeholder="Оберіть населений пункт" variant="outline" size="xl" class="w-full" />
           </UFormField>
 
           <UFormField name="email" class="mb-4">
