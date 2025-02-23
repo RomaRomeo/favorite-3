@@ -27,7 +27,7 @@ const validate = (state: any): FormError[] => {
 function onSubmit() {
   loading.value = true;
 
-  useFetch("https://getform.io/f/ayvkkqqb1", {
+  useFetch("https://getform.io/f/ayvkkqqb", {
     method: "POST",
     body: JSON.stringify({ ...state, plan: props.planName, category: props.category }),
     headers: { Accept: "application/json", "Content-Type": "application/json" },
