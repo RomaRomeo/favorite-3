@@ -1,5 +1,5 @@
 <script setup lang="ts">
-defineProps<{
+const props = defineProps<{
   name: string;
   category: string;
   description: string;
@@ -16,8 +16,8 @@ defineProps<{
     class="w-full min-h-[420px] px-6 py-4 border border-sky-200 transition-shadow duration-300 hover:shadow-lg transition-colors duration-300 transform rounded-lg bg-gray-50 dark:bg-gray-800 flex flex-col"
   >
     <div
-      v-if="isRecommended"
-      class="absolute -top-4 right-4 flex items-center gap-1 px-3 py-1 text-xs font-semibold text-white uppercase bg-sky-500 rounded-full shadow-md"
+      v-if="props.isRecommended"
+      class="absolute -top-4 right-4 flex items-center gap-1 px-3 py-1 text-xs font-semibold text-white uppercase bg-[#eb5c78]  rounded-full shadow-md"
     >
       <UIcon name="material-symbols:star-rounded" class="w-4 h-4" />
       <span>Рекомендовано</span>
@@ -25,23 +25,23 @@ defineProps<{
 
     <div class="text-center">
       <p class="text-2xl font-semibold text-gray-800 dark:text-gray-100">
-        {{ name }}
+        {{ props.name }}
       </p>
       <p
-        :title="description"
+        :title="props.description"
         class="mt-4 text-gray-500 dark:text-gray-300 h-12 overflow-hidden break-words line-clamp-2"
       >
-        {{ description }}
+        {{ props.description }}
       </p>
       <h4 class="mt-2 text-4xl font-semibold text-gray-800 dark:text-gray-100">
-        {{ price }}
+        {{ props.price }}
       </h4>
       <p class="mt-4 text-gray-500 dark:text-gray-300">/в місяць</p>
     </div>
 
     <div class="my-8 space-y-4 flex flex-col ">
       <div
-        v-for="feature in features"
+        v-for="feature in props.features"
         :key="feature"
         class="flex items-center inline-block"
       >
