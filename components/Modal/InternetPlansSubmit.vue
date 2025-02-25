@@ -11,6 +11,7 @@ const modal = useModal();
 const state = reactive({
   name: "",
   settlement: "",
+  street: "",
   email: "",
   phone: "",
   comment: "",
@@ -87,58 +88,27 @@ watch(
         </div>
 
         <UForm :validate="validate" :state="state" @submit="onSubmit">
-          <UFormField name="name" class="mb-4">
-            <template #label>
-              <div class="flex items-center gap-2">
-                <UIcon name="material-symbols:person-edit-outline-sharp" class="w-4 h-4 text-gray-500" />
-                <div>Ваше ім’я та прізвище*</div>
-              </div>
-            </template>
-            <UInput v-model="state.name" variant="outline" size="xl" color="secondary" class="w-full" />
+          <UFormField name="name" class="mb-4" label="Ваше ім’я та прізвище" required>
+            <UInput v-model="state.name" placeholder="Введіть ваше ім’я та прізвище" variant="outline" size="xl" color="secondary" class="w-full" icon="material-symbols:person-edit-outline-sharp"/>
           </UFormField>
-
-          <UFormField name="city" class="mb-4">
-            <template #label>
-              <div class="flex items-center gap-2">
-                <UIcon name="mdi:home-city" class="w-4 h-4 text-gray-500" />
-                <div>Назва населеного пункту*</div>
-              </div>
-            </template>
-            <SelectorSettlements v-model="state.settlement" :disabled="props.category === 'ходорів'" placeholder="Оберіть населений пункт" variant="outline" size="xl" class="w-full" />
+          <UFormField name="settlement" class="mb-4" label="Назва населеного пункту" required>
+            <SelectorSettlements v-model="state.settlement" :exclude-khodoriv="props.category === 'ходорів'" placeholder="Оберіть населений пункт" variant="outline" size="xl" class="w-full" />
           </UFormField>
-
-          <UFormField name="email" class="mb-4">
-            <template #label>
-              <div class="flex items-center gap-2">
-                <UIcon name="ic:outline-email" class="w-4 h-4 text-gray-500" />
-                <div>Email</div>
-              </div>
-            </template>
-            <UInput v-model="state.email" variant="outline" size="xl" color="secondary" class="w-full" />
+          <UFormField name="email" class="mb-4" required label="Вулиця та номер будинку (квартири)" >
+            <UInput v-model="state.street" placeholder="Введіть вулицю та номер будинку (квартири)" variant="outline" size="xl" color="secondary" class="w-full" icon="streamline:street-sign" />
           </UFormField>
-
-          <UFormField name="phone" class="mb-4">
-            <template #label>
-              <div class="flex items-center gap-2">
-                <UIcon name="bi:telephone" class="w-4 h-4 text-gray-500" />
-                <span>Номер телефону*</span>
-              </div>
-            </template>
-            <UInput v-model="state.phone" variant="outline" size="xl" color="secondary" class="w-full" />
+          <UFormField name="email" class="mb-4" label="Електронна пошта" hint="Необов’язкове поле">
+            <UInput v-model="state.email" placeholder="Введіть електронну пошту" variant="outline" size="xl" color="secondary" class="w-full" icon="ic:outline-email" />
           </UFormField>
-
-          <UFormField name="comment" class="mb-8">
-            <template #label>
-              <div class="flex items-center gap-2">
-                <UIcon name="iconamoon:comment-check-light" class="w-4 h-4 text-gray-500" />
-                <span>Коментар (необов’язково)</span>
-              </div>
-            </template>
-            <UTextarea v-model="state.comment" variant="outline" size="xl" color="secondary" class="w-full" />
+          <UFormField name="phone" class="mb-4" required label="Номер телефону">
+            <UInput v-model="state.phone" placeholder="Введіть номер телефону" variant="outline" size="xl" color="secondary" class="w-full" icon="bi:telephone" />
+          </UFormField>
+          <UFormField name="comment" label="Коментар" class="mb-8" hint="Необов’язкове поле">
+            <UTextarea v-model="state.comment" variant="outline" size="xl" color="secondary" class="w-full"  />
           </UFormField>
 
           <UButton
-            :disabled="!state.phone || !state.name || loading"
+            :disabled="!state.name || !state.settlement || !state.street || !state.phone || loading"
             type="submit"
             label="Відправити заявку"
             class="mt-auto w-full justify-center uppercase bg-sky-500 px-4 py-2 hover:bg-sky-400 disabled:bg-grey-100"
