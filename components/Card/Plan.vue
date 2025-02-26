@@ -4,16 +4,17 @@ const props = defineProps<{
   category: string;
   description: string;
   price: string;
-  speed: string;
+  speed?: string;
   features: string[];
   isRecommended?: boolean;
   isSelected?: boolean;
 }>();
+const emit = defineEmits(["onCardClick"]);
 </script>
 
 <template>
   <div
-    class="w-full min-h-[420px] px-6 py-4 border border-sky-200 transition-shadow duration-300 hover:shadow-lg transition-colors duration-300 transform rounded-lg bg-gray-50 dark:bg-gray-800 flex flex-col"
+    class="w-full min-h-[320px] px-6 py-4 border border-sky-200 transition-shadow duration-300 hover:shadow-lg transition-colors duration-300 transform rounded-lg bg-gray-50 dark:bg-gray-800 flex flex-col"
   >
     <div
       v-if="props.isRecommended"
@@ -54,6 +55,7 @@ const props = defineProps<{
     <UButton
       label="Вибрати"
       class="mt-auto w-full justify-center uppercase bg-sky-500 px-4 py-2 hover:bg-sky-400"
+      @click="$emit('onCardClick')"
     />
   </div>
 </template>

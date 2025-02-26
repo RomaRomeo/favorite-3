@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { formatInternetPlans } from "~/services/format/internet-plans";
-import { ModalInternetPlansSubmit } from "#components";
+import { ModalPlansSubmit } from "#components";
 
 const modal = useModal();
 const selectedCategory = ref("ходорів");
@@ -20,7 +20,7 @@ const categories = computed(() => [
 ]);
 
 function onSelectInternetPlanClick (planName: string, category: string) {
-  modal.open(ModalInternetPlansSubmit, { planName, category })
+  modal.open(ModalPlansSubmit, { planName, category })
 }
 </script>
 
@@ -46,10 +46,10 @@ function onSelectInternetPlanClick (planName: string, category: string) {
       list-class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4"
     >
       <template #item="{ item }">
-        <InternetPricingCard v-bind="item" @click="onSelectInternetPlanClick(item.name, item.category)" />
+        <CardPlan v-bind="item" @onCardClick="onSelectInternetPlanClick(item.name, item.category)" />
       </template>
       <template #loading>
-        <InternetSkeletonPricingCard />
+        <CardPlanSkeleton />
       </template>
     </BaseList>
   </UContainer>
