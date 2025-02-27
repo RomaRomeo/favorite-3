@@ -1,6 +1,7 @@
 {
   "data": [
     {
+      "id": "inet-khodoriv-bazovyi",
       "name": "Базовий",
       "description": "Оптимальний вибір для перегляду веб-сторінок",
       "price": "200 грн",
@@ -12,9 +13,11 @@
         "Швидкість до 200 Мбіт/с"
       ],
       "category": "ходорів",
+      "type": "інтернет",
       "isRecommended": false
     },
     {
+      "id": "inet-khodoriv-stantartnyi",
       "name": "Стандартний",
       "description": "Ідеально підходить для сімейного користування",
       "price": "250 грн",
@@ -26,9 +29,11 @@
         "Швидкість до 300 Мбіт/с"
       ],
       "category": "ходорів",
+      "type": "інтернет",
       "isRecommended": false
     },
     {
+      "id": "inet-khodoriv-premium",
       "name": "Преміум",
       "description": "Для геймерів і активних користувачів",
       "price": "300 грн",
@@ -40,9 +45,11 @@
         "Швидкість до 400 Мбіт/с"
       ],
       "category": "ходорів",
+      "type": "інтернет",
       "isRecommended": true
     },
     {
+      "id": "inet-khodoriv-yltra",
       "name": "Ультра",
       "description": "Максимальна швидкість та стабільність",
       "price": "500 грн",
@@ -54,9 +61,11 @@
         "Швидкість до 1 Гбіт/с"
       ],
       "category": "ходорів",
+      "type": "інтернет",
       "isRecommended": false
     },
     {
+      "id": "inet-region-bazovyi",
       "name": "Базовий",
       "description": "Оптимальний вибір для перегляду веб-сторінок",
       "price": "250 грн",
@@ -68,9 +77,11 @@
         "Швидкість до 100 Мбіт/с"
       ],
       "category": "регіон",
+      "type": "інтернет",
       "isRecommended": false
     },
     {
+      "id": "inet-region-stantartnyi",
       "name": "Стандартний",
       "description": "Ідеально підходить для сімейного користування",
       "price": "300 грн",
@@ -82,9 +93,11 @@
         "Швидкість до 200 Мбіт/с"
       ],
       "category": "регіон",
+      "type": "інтернет",
       "isRecommended": true
     },
     {
+      "id": "inet-region-premium",
       "name": "Преміум",
       "description": "Для геймерів і активних користувачів",
       "price": "350 грн",
@@ -96,9 +109,11 @@
         "Швидкість до 300 Мбіт/с"
       ],
       "category": "регіон",
+      "type": "інтернет",
       "isRecommended": false
     },
     {
+      "id": "inet-region-yltra",
       "name": "Ультра",
       "description": "Максимальна швидкість та стабільність",
       "price": "500 грн",
@@ -110,6 +125,7 @@
         "Швидкість до 500 Мбіт/с"
       ],
       "category": "регіон",
+      "type": "інтернет",
       "isRecommended": false
     }
   ]

@@ -1,16 +1,16 @@
 <script setup lang="ts">
-import { formatInternetPlans } from "~/services/format/internet-plans";
+import { formatInternetPlan } from "~/services/format/internet-plan";
 import { ModalPlansSubmit } from "#components";
 
 const modal = useModal();
 const selectedCategory = ref("ходорів");
-const { data, error, status } = useFetch<{ data: IResponseInternetPlans[] }>(
+const { data, error, status } = useFetch<{ data: IResponseInternetPlan[] }>(
   "/json/internet-plans.json",
   { method: "GET", server: false }
 );
 
 const plans = computed(() =>
-  data.value ? formatInternetPlans(data.value.data) : []
+  data.value ? formatInternetPlan(data.value.data) : []
 );
 const filteredPlans = computed(() =>
   plans.value.filter((p) => p.category === selectedCategory.value)
@@ -19,8 +19,8 @@ const categories = computed(() => [
   ...new Set(plans.value.map((plan) => plan.category)),
 ]);
 
-function onSelectInternetPlanClick (planName: string, category: string) {
-  modal.open(ModalPlansSubmit, { planName, category })
+function onSelectInternetPlanClick(plan: InternetPlan) {
+  modal.open(ModalPlansSubmit, plan);
 }
 </script>
 
@@ -37,7 +37,12 @@ function onSelectInternetPlanClick (planName: string, category: string) {
       різні варіанти швидкості та ціни для кожного користувача.
     </p>
 
-    <BaseToggle v-if="categories.length" v-model="selectedCategory" :options="categories" class="mb-10" />
+    <BaseToggle
+      v-if="categories.length"
+      v-model="selectedCategory"
+      :options="categories"
+      class="mb-10"
+    />
 
     <BaseList
       :items="filteredPlans"
@@ -46,7 +51,10 @@ function onSelectInternetPlanClick (planName: string, category: string) {
       list-class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4"
     >
       <template #item="{ item }">
-        <CardPlan v-bind="item" @onCardClick="onSelectInternetPlanClick(item.name, item.category)" />
+        <CardPlan
+          v-bind="item"
+          @onCardClick="onSelectInternetPlanClick(item)"
+        />
       </template>
       <template #loading>
         <CardPlanSkeleton />

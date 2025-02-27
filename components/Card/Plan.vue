@@ -18,7 +18,7 @@ const emit = defineEmits(["onCardClick"]);
   >
     <div
       v-if="props.isRecommended"
-      class="absolute -top-4 right-4 flex items-center gap-1 px-3 py-1 text-xs font-semibold text-white uppercase bg-[#eb5c78]  rounded-full shadow-md"
+      class="absolute -top-4 right-4 flex items-center gap-1 px-3 py-1 text-xs font-semibold text-white uppercase bg-[#eb5c78] rounded-full shadow-md"
     >
       <UIcon name="material-symbols:star-rounded" class="w-4 h-4" />
       <span>Рекомендовано</span>
@@ -40,7 +40,7 @@ const emit = defineEmits(["onCardClick"]);
       <p class="mt-4 text-gray-500 dark:text-gray-300">/в місяць</p>
     </div>
 
-    <div class="my-8 space-y-4 flex flex-col ">
+    <div class="my-8 space-y-4 flex flex-col">
       <div
         v-for="feature in props.features"
         :key="feature"

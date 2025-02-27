@@ -2,8 +2,9 @@
 import type { FormError } from "#ui/types";
 
 const props = defineProps<{
-  planName: string;
+  name: string;
   category: string;
+  type: string;
 }>();
 
 const toast = useToaster()
@@ -30,7 +31,7 @@ function onSubmit() {
 
   useFetch("https://getform.io/f/ayvkkqqb", {
     method: "POST",
-    body: JSON.stringify({ ...state, plan: props.planName, category: props.category }),
+    body: JSON.stringify({ ...state, type: props.type, plan: props.name, category: props.category }),
     headers: { Accept: "application/json", "Content-Type": "application/json" },
   })
     .then((res) => {
@@ -82,7 +83,7 @@ watch(
         <div class="bg-gray-100 dark:bg-gray-800 p-3 rounded-lg text-center mb-4">
           <p class="text-lg text-gray-700 dark:text-gray-300 gap-2">
             Ви обрали тариф:
-            <span class="font-semibold text-primary">{{ planName }}</span>
+            <span class="font-semibold text-primary">{{ name }}</span>
             <span class="font-semibold text-primary capitalize">({{ category }})</span>
           </p>
         </div>
