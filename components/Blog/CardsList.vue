@@ -27,7 +27,7 @@ const props = defineProps<{
         <p class="max-w-lg mx-auto mt-4 text-gray-500">{{ props.description }}</p>
       </div>
       <div class="grid grid-cols-1 gap-8 mt-8 lg:grid-cols-2">
-        <BlogCardsItem
+        <BlogCardItem
           v-for="post in props.posts"
           :key="post.id"
           :title="post.title"

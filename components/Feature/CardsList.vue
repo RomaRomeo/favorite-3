@@ -16,7 +16,7 @@ const props = defineProps<{
   <section class="my-8">
     <div class="container px-6 py-12 mx-auto">
       <div class="grid grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-4">
-        <FeaturesSimpleItem
+        <FeatureCardItem
           v-for="(feature, index) in props.items"
           :key="index"
           :icon="feature.icon"

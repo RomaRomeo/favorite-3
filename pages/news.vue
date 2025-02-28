@@ -14,10 +14,10 @@ const news = computed(() => (data.value ? formatNews(data.value.data) : []));
       title="Оголошення"
     >
       <template #item="{ item }">
-        <PostItem v-bind="item" />
+        <PostCardItem v-bind="item" />
       </template>
       <template #loading>
-        <PostSkeletonItem />
+        <PostCardsSkeleton />
       </template>
     </BaseList>
   </UContainer>
