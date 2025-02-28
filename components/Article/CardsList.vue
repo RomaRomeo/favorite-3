@@ -1,16 +1,16 @@
 <script setup lang="ts">
 const props = defineProps<{
   articles: {
-    image: string
-    title: string
-    description: string
-    category: string
+    image: string;
+    title: string;
+    description: string;
+    category: string;
     author: {
-      name: string
-      avatar: string
-    }
-    date: string
-  }[]
+      name: string;
+      avatar: string;
+    };
+    date: string;
+  }[];
 }>();
 </script>
 
