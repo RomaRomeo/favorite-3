@@ -1,4 +1,7 @@
 <script setup lang="ts">
+import { ModalWindowsConfig } from "#components";
+const modal = useModal();
+
 const articles = [
   {
     image: "/images/banners/windows-10-logo.jpg",
@@ -15,7 +18,9 @@ const articles = [
     date: "28 Лютого 2025",
   },
 ];
-
+function onSelectInternetPlanClick(plan: InternetPlan) {
+  modal.open(ModalWindowsConfig, plan);
+}
 </script>
 <template>
   <UContainer>
@@ -32,6 +37,6 @@ const articles = [
       оптимізації підключення для стабільної роботи.
     </p>
 
-    <ArticleCardsList :articles="articles" />
+    <ArticleCardsList :articles="articles" @on-card-click="onSelectInternetPlanClick()" />
   </UContainer>
 </template>

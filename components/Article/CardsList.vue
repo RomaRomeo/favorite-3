@@ -5,21 +5,23 @@ const props = defineProps<{
     title: string;
     description: string;
     category: string;
-    author: {
+    author?: {
       name: string;
       avatar: string;
     };
     date: string;
   }[];
 }>();
+const emit = defineEmits(["onCardClick"]);
 </script>
 
 <template>
-  <div class="flex gap-4 w-full">
+  <div class="grid sm:grid-cols-2 grid-cols-1 gap-6 w-full">
     <ArticleCardItem
       v-for="(article, index) in props.articles"
       :key="index"
       v-bind="article"
+      @on-card-click="$emit('onCardClick')"
     />
   </div>
 </template>

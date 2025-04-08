@@ -10,6 +10,7 @@ const props = defineProps<{
   };
   date: string;
 }>();
+const emit = defineEmits(["onCardClick"]);
 </script>
 
 <template>
@@ -24,6 +25,7 @@ const props = defineProps<{
         <a
           href="#"
           class="block mt-2 text-xl font-semibold text-gray-800 dark:text-white hover:text-gray-600 hover:underline"
+          @click="$emit('onCardClick')"
         >
           {{ props.title }}
         </a>

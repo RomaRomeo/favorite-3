@@ -70,7 +70,7 @@ const items = [
 
 <template>
   <UContainer>
-    <UCarousel v-slot="{ item }" arrows dots :items="items" class="w-full max-w-[calc(100%-60px)] mx-auto">
+    <UCarousel v-slot="{ item }" arrows dots autoplay :items="items" class="w-full max-w-[calc(100%-60px)] mx-auto">
       <img :src="item" class="rounded-lg object-cover h-[400px] max-md:h-[200px] w-full" />
     </UCarousel>
 
