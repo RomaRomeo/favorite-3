@@ -1,6 +1,7 @@
 <script setup lang="ts">
 const props = defineProps<{
   articles: {
+    id: string;
     image: string;
     title: string;
     description: string;
@@ -21,7 +22,7 @@ const emit = defineEmits(["onCardClick"]);
       v-for="(article, index) in props.articles"
       :key="index"
       v-bind="article"
-      @on-card-click="$emit('onCardClick')"
+      @on-card-click="$emit('onCardClick', article.id)"
     />
   </div>
 </template>

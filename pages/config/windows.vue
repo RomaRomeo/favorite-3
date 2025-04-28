@@ -9,6 +9,7 @@ const articles = [
     description: "Детальна інструкція з налаштування PPPoE-з'єднання у Windows 10. Дізнайтесь, як створити підключення, ввести дані провайдера та усунути можливі проблеми з мережею.",
     category: "Інтернет та мережі",
     date: "28 Лютого 2025",
+    id: 'windows-10'
   },
   {
     image: "/images/banners/windows-7-logo.jpg",
@@ -16,10 +17,11 @@ const articles = [
     description: "Покроковий гід із налаштування PPPoE-з'єднання у Windows 7. Як правильно створити з'єднання, внести параметри та вирішити можливі проблеми з підключенням.",
     category: "Інтернет та мережі",
     date: "28 Лютого 2025",
+    id: 'windows-7'
   },
 ];
-function onSelectInternetPlanClick(plan: InternetPlan) {
-  modal.open(ModalWindowsConfig, plan);
+function onSelectInternetPlanClick(id: string) {
+  modal.open(ModalWindowsConfig, { type: id });
 }
 </script>
 <template>
@@ -37,6 +39,6 @@ function onSelectInternetPlanClick(plan: InternetPlan) {
       оптимізації підключення для стабільної роботи.
     </p>
 
-    <ArticleCardsList :articles="articles" @on-card-click="onSelectInternetPlanClick()" />
+    <ArticleCardsList :articles="articles" @on-card-click="onSelectInternetPlanClick" />
   </UContainer>
 </template>
