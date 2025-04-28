@@ -4,6 +4,48 @@ const props = defineProps<{
 }>();
 
 const guides = {
+  "windows-xp": {
+    title: "Налаштування PPPoE підключення на Windows XP",
+    description: "Покрокова інструкція для створення підключення PPPoE у Windows XP.",
+    steps: [
+      {
+        hideStepper: false, // fixed error in template
+        image: "/images/guides/windows-xp/step1.jpg",
+        description: "На робочому столі відкрийте 'Мій комп'ютер', а в ньому 'Панель керування'. Тут відкривайте 'Мережеві підключення'",
+      },
+      {
+        image: "/images/guides/windows-xp/step2.jpg",
+        description: "У пункті меню 'Файл' виберіть 'Нове підключення'",
+      },
+      {
+        image: "/images/guides/windows-xp/step3.jpg",
+        description: "Натисніть 'Далі' у майстрі нових підключень.",
+      },
+      {
+        image: "/images/guides/windows-xp/step4.jpg",
+        description: "У вікні 'Майстер нових підключень' натискайте 'Далі', потім виберіть 'Установити підключення вручну' і натисніть 'Далі'.",
+      },
+      {
+        image: "/images/guides/windows-xp/step5.jpg",
+        description: "Виберіть 'Через високошвидкісне підключення, яке потребує вказання ім'я користувача та пароля' і натисніть 'Далі'.",
+      },
+      {
+        image: "/images/guides/windows-xp/step6.jpg",
+        description: "У полі 'Ім'я постачальника послуг' введіть назву з'єднання, наприклад, 'Інтернет', і натисніть 'Далі'.",
+      },
+      {
+        image: "/images/guides/windows-xp/step7.jpg",
+        description: "У поля 'Ім'я користувача' і 'Пароль' введіть ім'я (логін) та пароль для входу в Інтернет і натисніть 'Далі'.",
+      },
+      {
+        image: "/images/guides/windows-xp/step8.jpg",
+        description: "Встановіть пункт 'Додати ярлик підключення на робочий стіл' і натисніть 'Готово'",
+      },
+      {
+        description: "Для підключення до інтернету натисніть 'Підключення'.",
+      },
+    ],
+  },
   "windows-7": {
     title: "Налаштування PPPoE підключення на Windows 7",
     description: "Покрокова інструкція для створення підключення PPPoE у Windows 7.",
@@ -11,6 +53,7 @@ const guides = {
       {
         image: "/images/guides/windows7/step1.png",
         description: "Натисніть кнопку 'Пуск', потім відкрийте 'Панель керування'.",
+        hideStepper: false // fixed error in template
       },
       {
         image: "/images/guides/windows7/step2.png",
@@ -57,6 +100,7 @@ const guides = {
       {
         image: "/images/guides/windows10/step1.png",
         description: "Правою кнопкою миші натисніть 'Пуск' та виберіть 'Мережеві підключення'.",
+        hideStepper: false // fixed error in template
       },
       {
         image: "/images/guides/windows10/step2.png",
@@ -88,41 +132,49 @@ const guides = {
       },
     ],
   },
-  "windows-11": {
-    title: "Налаштування PPPoE підключення у Windows 11",
+"windows-11": {
+    title: "Налаштування PPPoE підключення на Windows 11",
     description: "Покрокова інструкція для створення підключення PPPoE у Windows 11.",
     steps: [
       {
         image: "/images/guides/windows11/step1.png",
-        description: "Натисніть правою кнопкою миші на 'Пуск' і оберіть 'Налаштування'.",
+        description: "Натисніть правою кнопкою миші на значок мережі на панелі керування.",
       },
       {
         image: "/images/guides/windows11/step2.png",
-        description: "У розділі 'Мережа та Інтернет' перейдіть до 'Комутовані мережі'.",
+        description: "Відкрийте налаштування 'Мережа й Інтернет'.",
       },
       {
         image: "/images/guides/windows11/step3.png",
-        description: "Натисніть 'Додати нове підключення'.",
+        description: "Виберіть розділ 'Комутоване з’єднання'.",
       },
       {
         image: "/images/guides/windows11/step4.png",
-        description: "Оберіть 'Підключення до Інтернету'.",
+        description: "Натисніть 'Установити нове підключення'.",
       },
       {
         image: "/images/guides/windows11/step5.png",
-        description: "Виберіть тип 'PPPoE (Широкосмугове)'.",
+        description: "Оберіть 'Підключитися до Інтернету' та натисніть 'Далі'.",
       },
       {
         image: "/images/guides/windows11/step6.png",
-        description: "Введіть логін і пароль. Увімкніть опцію 'Запам’ятати цей пароль' і натисніть 'Підключити'.",
+        description: "Оберіть тип підключення 'Широкосмугове (PPPoE)'.",
       },
       {
         image: "/images/guides/windows11/step7.png",
-        description: "У випадку помилки натисніть 'Усе одно встановити підключення'.",
+        description: "Введіть свій логін та пароль від особистого кабінету користувача та натисніть 'Підключити'.",
       },
       {
         image: "/images/guides/windows11/step8.png",
-        description: "Після успішного підключення нове з’єднання з’явиться у списку 'Комутовані мережі'.",
+      },
+      {
+        image: "/images/guides/windows11/step9.png",
+        hideStepper: true
+      },
+      {
+        image: "/images/guides/windows11/step10.png",
+        description: "Після підключення, якщо Інтернет недоступний, обов’язково зверніться до технічної підтримки.",
+        hideStepper: true
       },
     ],
   },
@@ -143,8 +195,9 @@ const guide = computed(() => guides[props.type as keyof typeof guides]);
         :key="index"
         class="flex flex-col items-center space-y-2"
       >
-        <div class="text-lg font-semibold text-primary">Крок {{ index + 1 }}</div>
+        <div v-if="!step.hideStepper" class="text-lg font-semibold text-primary">Крок {{ index + 1 }}</div>
         <img
+          v-if="step.image"
           :src="step.image"
           alt="Крок налаштування"
           class="max-w-full rounded-xl shadow-md"
