@@ -89,6 +89,7 @@ const guide = computed(() => guides[props.type as keyof typeof guides]);
         <p class="text-center text-gray-700 max-w-md">
           {{ step.description }}
         </p>
+        
       </div>
     </div>
   </template>
