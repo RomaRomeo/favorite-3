@@ -74,7 +74,7 @@ const items = [
       <img :src="item" class="rounded-lg object-cover h-[400px] max-md:h-[200px] w-full" />
     </UCarousel>
 
-    <FeaturesCardsList :items="features" />
+    <FeatureCardsList :items="features" />
 
     <BlogCardsList
       title="Останні новини та акції"
