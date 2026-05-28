@@ -22,6 +22,8 @@ const loading = ref(false);
 const validate = (state: any): FormError[] => {
   const errors = [];
   if (!state.name) errors.push({ name: "name", message: "Поле <Ваше ім'я та прізвище> є обовʼязковим" });
+  if (!state.settlement) errors.push({ name: "settlement", message: "Поле <Назва населеного пункту> є обовʼязковим" });
+  if (!state.street) errors.push({ name: "street", message: "Поле <Вулиця та номер будинку (квартири)> є обовʼязковим" });
   if (!state.phone) errors.push({ name: "phone", message: "Поле <Номер телефону> є обовʼязковим" });
   return errors;
 };
@@ -31,7 +33,7 @@ async function onSubmit() {
   try {
     await $fetch("https://forminit.com/f/bejrjqda", {
       method: "POST",
-      body: { ...state, type: props.type, plan: props.name, category: props.category },
+      body: { ...state, form_type: "Нове підключення", source_page: "Модалка тарифу", plan_name: props.name, plan_type: props.type, plan_category: props.category },
       headers: { Accept: "application/json", "Content-Type": "application/json" },
     });
     toast.success("Дякуємо! Ваша заявка успішно відправлена. Ми зв'яжемося з вами найближчим часом.", "Заявку успішно відправлено!");

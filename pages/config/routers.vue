@@ -3,7 +3,7 @@ import { ModalRouterConfig } from "#components";
 import { configRouters } from "~/data/config-routers";
 
 useSeoMeta({
-  title: 'Налаштування роутерів',
+  title: 'Налаштування роутерів | Фаворит ТВ/НЕТ',
   description: 'Покрокові інструкції з налаштування Wi-Fi роутерів TP-Link та Netis від Фаворит ТВ/НЕТ.',
   ogTitle: 'Налаштування роутерів | Фаворит ТВ/НЕТ',
   ogDescription: 'Детальні інструкції з налаштування популярних Wi-Fi роутерів.',

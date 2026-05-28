@@ -11,10 +11,10 @@ if (!post.value) {
 }
 
 useSeoMeta({
-  title: post.value.title,
-  description: post.value.description || `${post.value.title} — Фаворит ТВ/НЕТ`,
-  ogTitle: post.value.title,
-  ogDescription: post.value.description || `${post.value.title} — Фаворит ТВ/НЕТ`,
+  title: `${post.value.title} | Фаворит ТВ/НЕТ`,
+  description: post.value.description || `${post.value.title} | Фаворит ТВ/НЕТ`,
+  ogTitle: `${post.value.title} | Фаворит ТВ/НЕТ`,
+  ogDescription: post.value.description || `${post.value.title} | Фаворит ТВ/НЕТ`,
   ogImage: post.value.image || '/images/slides/seo_banner.png',
   ogType: 'article',
 })

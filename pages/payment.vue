@@ -3,7 +3,7 @@ import { siteConfig } from '~/config/site'
 import { paymentFaq } from '~/data/payment-faq'
 
 useSeoMeta({
-  title: 'Оплата',
+  title: 'Оплата інтернету | Фаворит ТВ/НЕТ',
   description: 'Оплата інтернет-послуг Фаворит ТВ/НЕТ через ПриватБанк або EasyPay. Швидко, безпечно, без комісій.',
   ogTitle: 'Оплата послуг | Фаворит ТВ/НЕТ',
   ogDescription: 'Оплатіть інтернет-послуги онлайн через ПриватБанк або EasyPay без комісій.',

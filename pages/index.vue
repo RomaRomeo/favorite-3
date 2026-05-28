@@ -2,7 +2,7 @@
 import { siteConfig } from '~/config/site'
 
 useSeoMeta({
-  title: 'Головна',
+  title: 'Інтернет у Ходорові та регіоні | Фаворит ТВ/НЕТ',
   description: 'Фаворит ТВ/НЕТ — інтернет-провайдер у Ходорові та регіоні. Швидкий інтернет, цифрове та кабельне телебачення.',
   ogTitle: 'Фаворит ТВ/НЕТ — Інтернет та телебачення у Ходорові',
   ogDescription: 'Швидкий інтернет до 1 Гбіт/с, цифрове та кабельне ТБ. Підключення від 250 грн/міс.',
@@ -22,6 +22,7 @@ const form = reactive({
   name: '',
   phone: '',
   settlement: '',
+  isNewConnectionConfirmed: false,
 })
 const formLoading = ref(false)
 const formSuccess = ref(false)
@@ -31,15 +32,17 @@ async function submitForm() {
   formLoading.value = true
   formError.value = false
   try {
+    const { isNewConnectionConfirmed, ...formPayload } = form
     await $fetch('https://forminit.com/f/bejrjqda', {
       method: 'POST',
-      body: { ...form },
+      body: { ...formPayload, form_type: 'Нове підключення інтернету', source_page: 'Головна сторінка' },
       headers: { Accept: 'application/json', 'Content-Type': 'application/json' },
     })
     formSuccess.value = true
     form.name = ''
     form.phone = ''
     form.settlement = ''
+    form.isNewConnectionConfirmed = false
   } catch {
     formSuccess.value = false
     formError.value = true
@@ -233,28 +236,44 @@ const { data: latestPosts } = await useAsyncData('latest-posts', async () => {
       <UContainer>
         <div class="max-w-xl mx-auto">
           <div class="text-center mb-8">
-            <h2 class="text-2xl font-bold text-slate-900 lg:text-3xl">Підключити інтернет</h2>
-            <p class="text-slate-500 mt-2">Залиште контакти — ми передзвонимо і підключимо у найкоротший термін</p>
+            <h2 class="text-2xl font-bold text-slate-900 lg:text-3xl">Заявка на нове підключення</h2>
+            <p class="text-slate-500 mt-2">Заповніть форму, якщо хочете підключити інтернет або телебачення. Ми передзвонимо для уточнення деталей.</p>
           </div>
           <form
             class="bg-white rounded-2xl shadow-lg border border-slate-200 p-8 space-y-5"
             @submit.prevent="submitForm"
           >
+            <div class="flex items-start gap-2.5 rounded-xl border border-blue-100 bg-blue-50/60 px-4 py-3 text-sm text-slate-600">
+              <UIcon name="i-heroicons-information-circle-20-solid" class="mt-0.5 h-4 w-4 shrink-0 text-blue-400" />
+              <p>
+                Ця форма лише для <strong>нового підключення</strong>. Для оплати, ремонту або відсутності інтернету звертайтесь через
+                <NuxtLink to="/contact" class="font-medium underline underline-offset-2 hover:text-slate-800">Контакти</NuxtLink>,
+                <a :href="siteConfig.social.viber" target="_blank" rel="noopener" class="font-medium underline underline-offset-2 hover:text-slate-800">Viber</a>,
+                <a :href="siteConfig.social.telegram" target="_blank" rel="noopener" class="font-medium underline underline-offset-2 hover:text-slate-800">Telegram</a>
+                або за телефоном.
+              </p>
+            </div>
             <UFormField label="Ваше ім'я" required>
               <UInput v-model="form.name" placeholder="Введіть ваше ім'я" size="xl" class="w-full" />
             </UFormField>
             <UFormField label="Номер телефону" required>
               <UInput v-model="form.phone" placeholder="+380..." size="xl" class="w-full" />
             </UFormField>
-            <UFormField label="Населений пункт">
+            <UFormField label="Населений пункт" required>
               <SelectorSettlements v-model="form.settlement" placeholder="Оберіть населений пункт" size="xl" />
             </UFormField>
+            <div class="space-y-2">
+              <UCheckbox
+                v-model="form.isNewConnectionConfirmed"
+                label="Підтверджую, що це заявка на нове підключення, а не звернення щодо існуючої послуги."
+              />
+            </div>
             <UButton
               type="submit"
               label="Підключити інтернет"
               size="xl"
               class="w-full justify-center bg-blue-600 hover:bg-blue-700 text-white font-semibold"
-              :disabled="!form.name || !form.phone || formLoading"
+              :disabled="!form.name || !form.phone || !form.settlement || !form.isNewConnectionConfirmed || formLoading"
               :loading="formLoading"
             />
 

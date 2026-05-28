@@ -3,7 +3,7 @@ import { ModalPlansSubmit } from "#components";
 import { cablePlans } from "~/data/cable-plans";
 
 useSeoMeta({
-  title: 'Кабельне телебачення',
+  title: 'Кабельне телебачення | Фаворит ТВ/НЕТ',
   description: 'Тарифи кабельного телебачення від Фаворит ТВ/НЕТ у Ходорові. 100 каналів від 100 грн/міс.',
   ogTitle: 'Кабельне ТБ | Фаворит ТВ/НЕТ',
   ogDescription: 'Кабельне телебачення у Ходорові. 100 каналів від 100 грн/міс.',

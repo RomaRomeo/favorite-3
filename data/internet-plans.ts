@@ -33,7 +33,7 @@ export const internetPlans: Plan[] = [
     isRecommended: false,
   },
   {
-    id: "inet-khodoriv-stantartnyi",
+    id: "inet-khodoriv-standartnyi",
     name: "Стандартний",
     description: "Ідеально підходить для сімейного користування",
     price: "300 грн",

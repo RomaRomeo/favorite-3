@@ -3,7 +3,7 @@ import { ModalWindowsConfig } from "#components";
 import { configWindows } from "~/data/config-windows";
 
 useSeoMeta({
-  title: 'Налаштування PPPoE у Windows',
+  title: 'Налаштування PPPoE у Windows | Фаворит ТВ/НЕТ',
   description: 'Покрокові інструкції з налаштування PPPoE підключення у Windows 11, 10, 7 та XP від Фаворит ТВ/НЕТ.',
   ogTitle: 'Налаштування PPPoE у Windows | Фаворит ТВ/НЕТ',
   ogDescription: 'Детальні інструкції з налаштування інтернет-підключення PPPoE у Windows.',

@@ -3,7 +3,7 @@ import { ModalPlansSubmit } from "#components";
 import { internetPlans } from "~/data/internet-plans";
 
 useSeoMeta({
-  title: 'Тарифні плани Інтернет',
+  title: 'Тарифи на інтернет у Ходорові | Фаворит ТВ/НЕТ',
   description: 'Тарифи на інтернет у Ходорові та регіоні від 250 грн/міс. Швидкість до 1 Гбіт/с. Безлімітний трафік.',
   ogTitle: 'Тарифні плани Інтернет | Фаворит ТВ/НЕТ',
   ogDescription: 'Оберіть оптимальний тариф для інтернету. Швидкість до 1 Гбіт/с від 250 грн/міс.',
@@ -31,9 +31,9 @@ function onSelectInternetPlanClick(plan: Plan) {
 
 <template>
   <UContainer class="pt-10 md:pt-12 pb-16">
-    <h2 class="text-3xl font-semibold text-slate-900 mb-4">
+    <h1 class="text-3xl font-semibold text-slate-900 mb-4">
       Тарифні плани для інтернету
-    </h2>
+    </h1>
 
     <USeparator orientation="horizontal" class="my-8" />
 
